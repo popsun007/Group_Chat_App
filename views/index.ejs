@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Group Chat</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			var name = prompt("What's your name?");
+			var socket = io.connect();
+			$('button').click(function()
+			{
+				socket.emit("new_msg", {name: name, msg: $(".msg").val()});
+			});
+		});
+	</script>
+</head>
+<body>
+<div class="board"></div>
+<input type="text" class="msg" name="message"></input>
+<button>Send</button>
+</body>
+</html>
